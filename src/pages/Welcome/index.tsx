@@ -1,25 +1,54 @@
 import React from "react";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, SafeAreaView, Text, View, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  SafeAreaView,
+  Text,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+  View,
+} from "react-native";
+
+import { Feather } from "@expo/vector-icons";
 
 import wateringImg from "../../assets/watering.png";
-import Button from '../../components/Button';
+import colors from "../../styles/colors";
+import fonts from "../../styles/fonts";
+import { useNavigation } from "@react-navigation/core";
 
-export function Welcome() {
+const { white, green, heading } = colors;
+const { header, text, complement } = fonts;
+const height = Dimensions.get("window").width * 0.7;
+
+export default () => {
+  const navigation = useNavigation()
+
+  const handleNavigation = () => {
+    navigation.navigate("UserIdentification");
+  }
+
   return (
     <>
       <SafeAreaView style={styles.container}>
-        <Text style={styles.title}>
-        Gerencie{'\n'}
-        suas plantas de{'\n'}
-        forma fácil
-        </Text>
-        <Image style={styles.image} source={wateringImg} />
-        <Text style={styles.subtitle}>
-          Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você
-          sempre que precisar.
-        </Text>
-        <Button title="Avançar" />
+        <View style={styles.wrapper}>
+          <Text style={styles.title}>
+            Gerencie{"\n"}
+            suas plantas de{"\n"}
+            forma fácil
+          </Text>
+          <Image
+            resizeMode="contain"
+            style={styles.image}
+            source={wateringImg}
+          />
+          <Text style={styles.subtitle}>
+            Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você
+            sempre que precisar.
+          </Text>
+          <TouchableOpacity onPress={handleNavigation} activeOpacity={0.7} style={styles.button}>
+            <Feather name="chevron-right" size={30} color={white} />
+          </TouchableOpacity>
+        </View>
       </SafeAreaView>
     </>
   );
@@ -28,24 +57,43 @@ export function Welcome() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+  },
+  wrapper: {
+    flex: 1,
+    backgroundColor: white,
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
+    paddingHorizontal: 20
   },
   title: {
-    fontWeight: 'bold',
-    fontSize: 32,
-    textAlign: 'center',
-    color:'#52665A',
-    marginTop: 38
+    fontFamily: header,
+    fontWeight: "bold",
+    fontSize: 28,
+    lineHeight: 34,
+    textAlign: "center",
+    color: heading,
+    marginTop: 38,
   },
   subtitle: {
-    fontSize: 17,
+    fontFamily: text,
+    fontSize: 18,
     paddingHorizontal: 20,
-    textAlign: 'center',
-    color: '#5C6660'
+    textAlign: "center",
+    color: heading,
   },
   image: {
-    width: 292,
-  }
+    height: height,
+  },
+  button: {
+    width: 56,
+    height: 56,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: green,
+    borderRadius: 16,
+    marginBottom: 10,
+  },
+  buttonIcon: {
+    color: white,
+  },
 });
