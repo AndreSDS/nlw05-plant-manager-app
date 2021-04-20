@@ -7,7 +7,9 @@ import {
   SafeAreaView,
   TextInput,
   KeyboardAvoidingView,
+  TouchableWithoutFeedback,
   Platform,
+  Keyboard,
 } from "react-native";
 import Button from "../../components/Button";
 
@@ -47,6 +49,7 @@ export default () => {
         style={styles.container}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.content}>
           <View style={styles.form}>
             <View style={styles.header}>
@@ -68,7 +71,7 @@ export default () => {
               onBlur={inputBlur}
               onFocus={inputFocus}
             />
-            <View style={styles.footer}>
+            <View style={!!isFilled ? styles.footer : {...styles.footer, opacity: 0.5}}>
               <Button 
               onPress={handleNavigation}
               title="Confirmar"
@@ -77,6 +80,7 @@ export default () => {
             </View>
           </View>
         </View>
+        </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
