@@ -5,6 +5,7 @@ import Welcome from "../pages/Welcome";
 import UserIdentification from "../pages/UserIdentification";
 import Confirmation from "../pages/Confirmation";
 import colors from "../../src/styles/colors";
+import Plantselect from "../pages/Plantselect";
 
 const Stack = createStackNavigator();
 
@@ -17,9 +18,10 @@ const AppRoutes = () => (
       },
     }}
   >
-    <Stack.Screen name="Welcome" component={Welcome} />
+    {/* <Stack.Screen name="Welcome" component={Welcome} />
     <Stack.Screen name="UserIdentification" component={UserIdentification} />
-    <Stack.Screen name="Confirmation" component={Confirmation} />
+    <Stack.Screen name="Confirmation" component={Confirmation} /> */}
+    <Stack.Screen name="Plantselect" component={Plantselect} />
   </Stack.Navigator>
 );
 
